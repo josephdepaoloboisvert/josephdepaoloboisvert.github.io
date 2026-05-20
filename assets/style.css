@@ -1,0 +1,368 @@
+/* The DePaolo Dispatch — production stylesheet
+   ────────────────────────────────────────────
+   Carries the typewriter masthead + periodical body styles
+   across every page of the site. */
+
+:root {
+  --ink:        #14130f;
+  --ink-90:     #1c1b16;
+  --ink-80:     #2a2924;
+  --ink-70:     #444038;
+  --ink-60:     #6a6557;
+  --ink-50:     #8a8576;
+  --ink-40:     #a8a392;
+  --ink-30:     #bcb7a4;
+  --ink-25:     #c8c3b0;
+  --ink-20:     #d1ccb9;
+  --ink-15:     #d9d4c2;
+  --ink-12:     #ddd8c6;
+  --ink-10:     #e2decc;
+  --ink-08:     #e7e3d1;
+
+  --paper:      #f4f1e6;
+  --paper-2:    #ece8d9;
+  --bg:         #d9d4c2;
+
+  --accent:     #1f5a8a;
+  --accent-soft:#1f5a8a22;
+
+  --mono:    'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  --hand:    'Caveat', 'Patrick Hand', cursive;
+  --display: 'Bodoni Moda', 'Oswald', 'Archivo Narrow', Georgia, serif;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0; padding: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--mono);
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+/* ─── Page frame ────────────────────────────────────────────── */
+.page {
+  max-width: 1120px;
+  margin: 24px auto;
+  background: var(--paper);
+  padding: 28px 44px 44px;
+  border: 1px solid var(--ink-25);
+  box-shadow:
+    0 1px 0 var(--ink-15),
+    0 24px 60px -32px rgba(20,19,15,.25);
+}
+
+@media (max-width: 720px) {
+  .page { margin: 0; padding: 18px 18px 32px; border: none; box-shadow: none; }
+  body { font-size: 14px; }
+}
+
+/* ─── Upper rule strip ─────────────────────────────────────── */
+.rule-top {
+  border-top: 2px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+  padding: 6px 0;
+  display: flex; justify-content: space-between;
+  font-size: 10px; letter-spacing: .22em;
+  text-transform: uppercase; color: var(--ink-60);
+  gap: 12px;
+}
+.rule-top span { white-space: nowrap; }
+.rule-top .center { flex: 1; text-align: center; }
+
+/* ─── Masthead · typewriter ─────────────────────────────────── */
+.masthead {
+  text-align: center;
+  padding: 18px 0 8px;
+  border-bottom: 4px double var(--ink);
+  font-family: var(--mono);
+}
+.masthead h1 {
+  margin: 0; font-weight: 600;
+  font-size: clamp(34px, 5.6vw, 56px);
+  letter-spacing: -.03em;
+  line-height: 1;
+  text-transform: none;
+}
+.masthead h1 .sep { color: var(--accent); }
+.masthead .sub {
+  font-size: 11px; letter-spacing: .26em; margin-top: 10px;
+  text-transform: uppercase; color: var(--ink-60);
+}
+.masthead .sub b { color: var(--ink-80); font-weight: 600; }
+
+/* ─── Section nav ───────────────────────────────────────────── */
+.section-nav {
+  border-bottom: 1px solid var(--ink);
+  padding: 8px 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 22px;
+  font-size: 11px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+.section-nav a {
+  color: var(--ink-80);
+  border-bottom: 2px solid transparent;
+  padding-bottom: 3px;
+}
+.section-nav a.active {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+.section-nav a:hover { text-decoration: none; color: var(--accent); }
+
+/* ─── Section banner (per-page kicker) ──────────────────────── */
+.banner {
+  text-align: center;
+  padding-top: 18px;
+  margin-bottom: 12px;
+}
+.banner .kicker {
+  font-size: 11px; letter-spacing: .3em;
+  text-transform: uppercase; color: var(--ink-60);
+}
+.banner .kicker .accent { color: var(--accent); }
+.banner h2 {
+  font-family: var(--display); font-weight: 600;
+  font-size: clamp(28px, 3.4vw, 42px);
+  letter-spacing: -.01em; line-height: 1.05;
+  text-transform: uppercase;
+  margin: 6px 0 4px;
+}
+.banner h2.italic { font-style: italic; }
+.banner .dek {
+  font-size: 11px; color: var(--ink-60);
+  letter-spacing: .14em; font-style: italic;
+}
+
+/* ─── Body grids ────────────────────────────────────────────── */
+.grid { display: grid; gap: 18px; }
+.grid.cols-2  { grid-template-columns: 1fr 1fr; }
+.grid.cols-3  { grid-template-columns: repeat(3, 1fr); }
+.grid.cols-4  { grid-template-columns: repeat(4, 1fr); }
+.grid.lead-2  { grid-template-columns: 1.4fr 1px 1fr; }
+.grid.lead-3  { grid-template-columns: 1.4fr 1px 1fr 1fr; }
+.grid.feat-r  { grid-template-columns: 2fr 1px 1fr; }
+.grid.cv      { grid-template-columns: 1fr 1fr 1fr; }
+.grid .rule   { background: var(--ink); }
+
+@media (max-width: 880px) {
+  .grid.cols-3, .grid.cols-4, .grid.cv { grid-template-columns: 1fr 1fr; }
+  .grid.lead-2, .grid.lead-3, .grid.feat-r { grid-template-columns: 1fr; }
+  .grid .rule { display: none; }
+}
+@media (max-width: 560px) {
+  .grid.cols-3, .grid.cols-4, .grid.cv { grid-template-columns: 1fr; }
+}
+
+/* ─── Body type ─────────────────────────────────────────────── */
+.col-flow { font-size: 13.5px; line-height: 1.75; text-align: justify; hyphens: auto; }
+.col-flow.c2 { columns: 2; column-gap: 16px; }
+.col-flow.c4 { columns: 4; column-gap: 18px; column-rule: 1px solid var(--ink-15); }
+@media (max-width: 880px) { .col-flow.c4 { columns: 2; } }
+@media (max-width: 560px) { .col-flow.c2, .col-flow.c4 { columns: 1; } }
+
+.col-flow p { margin: 0 0 .75em; }
+.col-flow p + p { margin-top: 0; }
+
+.dropcap::first-letter {
+  font-family: var(--display);
+  font-size: 3.6em;
+  line-height: .85;
+  float: left;
+  padding: .08em .12em 0 0;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.pull {
+  margin: 10px 0;
+  padding: 10px 0;
+  border-top: 1px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+  font-family: var(--display);
+  font-size: 17px;
+  font-style: italic;
+  text-align: center;
+  break-inside: avoid;
+  line-height: 1.3;
+}
+
+.byline {
+  font-size: 11px; color: var(--ink-60);
+  letter-spacing: .14em; text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.byline .accent { color: var(--accent); }
+
+/* ─── Headlines ─────────────────────────────────────────────── */
+.headline {
+  font-family: var(--display);
+  font-weight: 600;
+  letter-spacing: -.01em;
+  line-height: 1.02;
+  text-transform: uppercase;
+  margin: 4px 0 8px;
+}
+.headline.h1 { font-size: 36px; }
+.headline.h2 { font-size: 26px; }
+.headline.h3 { font-size: 18px; }
+.headline.h4 { font-size: 15px; }
+
+/* ─── Photo placeholder ─────────────────────────────────────── */
+.photo {
+  position: relative;
+  width: 100%;
+  border: 1px solid var(--ink);
+  background-image: repeating-linear-gradient(135deg, transparent 0 8px, var(--ink-12) 8px 9px);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; color: var(--ink-60);
+  letter-spacing: .08em; text-transform: uppercase;
+  font-family: var(--mono);
+}
+.photo.h-92  { aspect-ratio: 4/3; min-height: 92px; }
+.photo.h-140 { aspect-ratio: 4/3; min-height: 140px; }
+.photo.h-180 { aspect-ratio: 16/9; min-height: 180px; }
+.photo .badge {
+  position: absolute; top: 6px; right: 6px;
+  background: var(--accent); color: var(--paper);
+  font-size: 9px; padding: 2px 6px; letter-spacing: .16em;
+}
+.photo.feat { border-color: var(--accent); }
+.caption {
+  font-size: 11px; color: var(--ink-60);
+  font-style: italic; margin-top: 4px; line-height: 1.4;
+}
+
+/* ─── Side blocks ───────────────────────────────────────────── */
+.editor-note {
+  padding: 10px 12px;
+  border: 1px solid var(--ink);
+  background: var(--accent-soft);
+}
+.editor-note .label {
+  font-size: 10px; letter-spacing: .22em;
+  text-transform: uppercase; color: var(--accent);
+  font-weight: 700; margin-bottom: 4px;
+}
+.editor-note .body { font-size: 12px; line-height: 1.55; color: var(--ink-80); }
+
+/* ─── Listings / dividers ───────────────────────────────────── */
+.list-row {
+  display: flex; justify-content: space-between;
+  padding: 7px 0;
+  border-bottom: 1px dotted var(--ink-25);
+  font-size: 13px;
+}
+.list-row .meta { color: var(--ink-60); }
+.list-row .label { font-weight: 600; }
+
+.row-dotted { border-bottom: 1px dotted var(--ink-15); padding: 4px 0; }
+.row-dotted:last-child { border-bottom: none; }
+
+.section-rule {
+  border-top: 2px solid var(--ink);
+  padding-top: 10px;
+  margin-top: 14px;
+}
+
+/* ─── Tease blocks ──────────────────────────────────────────── */
+.tease .kicker {
+  font-size: 10px; letter-spacing: .22em;
+  text-transform: uppercase; color: var(--accent);
+}
+.tease h4 {
+  font-family: var(--display); font-size: 18px;
+  font-weight: 600; margin: 4px 0 6px;
+  line-height: 1.1; text-transform: uppercase;
+}
+.tease p { font-size: 12.5px; line-height: 1.55; color: var(--ink-80); margin: 0; }
+.tease .cont {
+  display: inline-block; margin-top: 6px;
+  font-size: 11px; letter-spacing: .12em;
+  color: var(--accent);
+}
+
+/* ─── Classified ad cell ────────────────────────────────────── */
+.ad {
+  border: 1px solid var(--ink);
+  padding: 12px;
+  background: transparent;
+}
+.ad.accent { background: var(--accent-soft); }
+.ad h3 {
+  font-family: var(--display); font-weight: 700;
+  font-size: 15px; letter-spacing: .04em;
+  border-bottom: 1px solid var(--ink-30);
+  padding-bottom: 4px; margin: 0 0 7px;
+  text-transform: uppercase;
+}
+.ad p { margin: 0; font-size: 12.5px; line-height: 1.55; }
+.ad a { word-break: break-word; }
+
+/* ─── Skill bars (resume) ───────────────────────────────────── */
+.skill {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 11px; padding: 2px 0;
+}
+.skill .key { width: 130px; }
+.skill .bar {
+  flex: 1; height: 8px;
+  background: var(--ink-15); position: relative;
+}
+.skill .bar > span {
+  position: absolute; inset: 0;
+  background: var(--accent);
+}
+.skill .val { width: 26px; text-align: right; color: var(--ink-60); }
+
+/* ─── Dispatch (now) bullets ────────────────────────────────── */
+.bulletin h3 {
+  font-family: var(--display); font-size: 18px;
+  font-weight: 600; text-transform: uppercase;
+  margin: 0;
+}
+.bulletin .when {
+  font-size: 10px; color: var(--ink-60);
+  letter-spacing: .14em; text-transform: uppercase;
+  font-style: italic;
+}
+.bulletin p { font-size: 13px; line-height: 1.65; margin: 6px 0 0; }
+
+/* ─── Footer rule ───────────────────────────────────────────── */
+.foot {
+  margin-top: 24px;
+  border-top: 1px solid var(--ink);
+  padding-top: 10px;
+  display: flex; justify-content: space-between;
+  font-size: 11px; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--ink-60);
+  gap: 12px; flex-wrap: wrap;
+}
+.foot .accent { color: var(--accent); }
+
+/* ─── Utility ───────────────────────────────────────────────── */
+.center { text-align: center; }
+.muted  { color: var(--ink-60); }
+.italic { font-style: italic; }
+.mono   { font-family: var(--mono); }
+.serif  { font-family: var(--display); }
+.box {
+  padding: 12px;
+  border: 1px solid var(--ink);
+  font-size: 12.5px; line-height: 1.55;
+}
+.tiny-label {
+  font-size: 10px; letter-spacing: .22em;
+  text-transform: uppercase; color: var(--ink-60);
+}
