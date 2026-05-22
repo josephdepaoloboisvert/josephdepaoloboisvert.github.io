@@ -1,0 +1,33 @@
+name: Update Weather Dateline
+
+on:
+  schedule:
+    - cron: '10 * * * *'   # once per hour, at :10 past (avoids cold-start pile-ups)
+  workflow_dispatch:        # allow manual trigger from the Actions tab
+
+permissions:
+  contents: write
+
+jobs:
+  weather:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Fetch weather and update HTML
+        run: python scripts/update_weather.py
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name  "weather-bot"
+          git config user.email "noreply@github.com"
+          git add *.html
+          git diff --staged --quiet && echo "No changes" || \
+            git commit -m "chore: update weather dateline [skip ci]" && git push
