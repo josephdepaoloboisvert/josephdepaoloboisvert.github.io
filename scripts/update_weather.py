@@ -18,8 +18,9 @@ ROOT = Path(__file__).parent.parent
 
 
 def degrees_to_compass(deg):
-    dirs = ["N", "NE", "E", "SE", "S", "SW", "W", "NW"]
-    idx = round(float(deg) / 45) % 8
+    dirs = ["N","NNE","NE","ENE","E","ESE","SE","SSE",
+            "S","SSW","SW","WSW","W","WNW","NW","NNW"]
+    idx = round(float(deg) / 22.5) % 16
     return dirs[idx]
 
 
