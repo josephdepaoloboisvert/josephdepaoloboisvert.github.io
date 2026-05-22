@@ -301,21 +301,23 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
 }
 
 /* ─── Classified ad cell ────────────────────────────────────── */
-.ad {
+.listing {
+  border: 1px solid #14130f;
   border: 1px solid var(--ink);
   padding: 12px;
   background: transparent;
+  min-height: 60px;
 }
-.ad.accent { background: var(--accent-soft); }
-.ad h3 {
+.listing.accent { background: var(--accent-soft); }
+.listing h3 {
   font-family: var(--display); font-weight: 700;
   font-size: 15px; letter-spacing: .04em;
   border-bottom: 1px solid var(--ink-30);
   padding-bottom: 4px; margin: 0 0 7px;
   text-transform: uppercase;
 }
-.ad p { margin: 0; font-size: 12.5px; line-height: 1.55; }
-.ad a { word-break: break-word; }
+.listing p { margin: 0; font-size: 12.5px; line-height: 1.55; }
+.listing a { word-break: break-word; }
 
 /* ─── Skill bars (resume) ───────────────────────────────────── */
 .skill {
