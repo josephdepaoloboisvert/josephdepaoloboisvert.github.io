@@ -47,6 +47,17 @@ html, body {
 a { color: var(--accent); text-decoration: none; }
 a:hover { text-decoration: underline; text-underline-offset: 3px; }
 
+/* ─── Skip-to-content (a11y) ────────────────────────────────── */
+.skip-link {
+  position: absolute; left: 8px; top: -48px;
+  z-index: 100;
+  background: var(--ink); color: var(--paper);
+  padding: 8px 14px;
+  font-size: 11px; letter-spacing: .16em; text-transform: uppercase;
+  transition: top .15s ease;
+}
+.skip-link:focus { top: 8px; text-decoration: none; }
+
 /* ─── Page frame ────────────────────────────────────────────── */
 .page {
   max-width: 1120px;
