@@ -179,9 +179,15 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
 /* ─── Body type ─────────────────────────────────────────────── */
 .col-flow { font-size: 13.5px; line-height: 1.75; text-align: justify; hyphens: auto; }
 .col-flow.c2 { columns: 2; column-gap: 16px; }
+.col-flow.c3 { columns: 3; column-gap: 18px; column-rule: 1px solid var(--ink-15); }
 .col-flow.c4 { columns: 4; column-gap: 18px; column-rule: 1px solid var(--ink-15); }
-@media (max-width: 880px) { .col-flow.c4 { columns: 2; } }
-@media (max-width: 560px) { .col-flow.c2, .col-flow.c4 { columns: 1; } }
+@media (max-width: 880px) { .col-flow.c3, .col-flow.c4 { columns: 2; } }
+@media (max-width: 560px) { .col-flow.c2, .col-flow.c3, .col-flow.c4 { columns: 1; } }
+
+.col-flow figure, .col-flow .editor-note { break-inside: avoid; }
+.col-flow figure { margin: 0 0 12px; }
+.col-flow .editor-note { margin-top: 4px; }
+.article-stack { margin-top: 26px; }
 
 .col-flow p { margin: 0 0 .75em; }
 .col-flow p + p { margin-top: 0; }
